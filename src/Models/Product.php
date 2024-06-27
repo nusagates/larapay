@@ -7,24 +7,28 @@ namespace Nusagates\Laraipaymu\Models;
 class Product
 {
     public array $items = [];
-    public $id, $description, $weight, $length, $width, $height;
-    public string $name;
-    public float $price;
-    public int $quantity;
 
-    public function addItem($id, $name, $price, $quantity, $description = null, $weight = 0, $length = 0, $width = 0, $height = 0): void
+    /**
+     * Add new item to the product collections
+     * @param $id
+     * @param $name
+     * @param $price
+     * @param $quantity
+     * @param $description
+     * @param $weight
+     * @param $length
+     * @param $width
+     * @param $height
+     * @return void
+     */
+    public function addItem($id, $name, $price, $quantity): void
     {
 
         $this->items[] = [
             'id'          => $id,
             'product'     => trim($name),
             'price'       => $price,
-            'quantity'    => $quantity,
-            'description' => trim($description),
-            'weight'      => $weight,
-            'length'      => $length,
-            'width'       => $width,
-            'height'      => $height
+            'quantity'    => $quantity
         ];
     }
 
@@ -37,33 +41,22 @@ class Product
         $productsName = [];
         $productsPrice = [];
         $productsQty = [];
-        $productsDesc = [];
-        $productsWeight = [];
-        $productsDimension = [];
-        $productsLength = [];
-        $productsWidth = [];
-        $productsHeight = [];
         foreach ($this->items as $item) {
             $productsName[] = $item['product'];
             $productsPrice[] = $item['price'];
             $productsQty[] = $item['quantity'];
-            $productsDesc[] = $item['description']??null;
-            $productsWeight[] = $item['weight'];
-            $productsLength[] = $item['length'];
-            $productsWidth[] = $item['width'];
-            $productsHeight[] = $item['height'];
-            if (!($item['length'] == null || $item['width'] == null || $item['height'] == null)) {
-                $productsDimension[] = $item['length'] . ':' . $item['width'] . ':' . $item['height'];
-            }
         }
         $items['product'] = $productsName;
         $items['qty'] = $productsQty;
         $items['price'] = $productsPrice;
 
         return $items;
-
     }
 
+    /**
+     * get the total price of all added items
+     * @return float
+     */
     public function getSubtotal(): float
     {
         $subtotal = 0;

@@ -62,22 +62,39 @@ class Ipaymu
         return $this->request($this->service->paymentMethod, ['account' => $this->vaNumber]);
     }
 
-    public function directPayment(Buyer $buyer, int $amount, Payment $payment, Product $product=null): mixed
+    /**
+     * Process payments directly to get a response in the form of a Virtual Account (VA), QRIS, or others in json format
+     * @param Buyer $buyer
+     * @param int $amount
+     * @param Payment $payment
+     * @param Product|null $product
+     * @return mixed
+     */
+    public function directPayment(Buyer $buyer, int $amount, Payment $payment, Product $product = null): mixed
     {
         $paymentData = $buyer->toArray();
         $paymentData = array_merge($paymentData, $payment->toArray());
-        if($product!=null){
+        if ($product != null) {
             $paymentData = array_merge($paymentData, $product->getItems());
         }
         $paymentData['amount'] = $amount;
 
         return $this->request($this->service->directpayment, $paymentData);
     }
-    public function redirectPayment(Buyer $buyer, int $amount, Payment $payment, Product $product=null): mixed
+
+    /**
+     * Process payments via redirect url. The response is in the form of json containing the URL for making payment. Use this URL to get VA, Qris, or others.
+     * @param Buyer $buyer
+     * @param int $amount
+     * @param Payment $payment
+     * @param Product|null $product
+     * @return mixed
+     */
+    public function redirectPayment(Buyer $buyer, int $amount, Payment $payment, Product $product = null): mixed
     {
         $paymentData = $buyer->toArray();
         $paymentData = array_merge($paymentData, $payment->toArray());
-        if($product!=null){
+        if ($product != null) {
             $paymentData = array_merge($paymentData, $product->getItems());
         }
         $paymentData['amount'] = $amount;
