@@ -1,6 +1,6 @@
 {
     "name": "nusagates/laraipaymu",
-    "description": "Laravel helper for ipaymu integration",
+    "description": "Laravel helper for iPaymu integration",
     "require": {
         "guzzlehttp/guzzle": "^7.8"
     },
