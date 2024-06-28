@@ -9,6 +9,6 @@ Laravel package for easy integration with payment gateways. Developed using the 
 # Installation
 The best way to use this package is using [composer](https://getcomposer.org/)
 
-`composer require nusagates/larapay`
+```composer require nusagates/larapay```
 
 
