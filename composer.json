@@ -1,9 +1,9 @@
 {
     "name": "nusagates/larapay",
     "description": "Laravel helper for iPaymu integration",
-    "require": {
-        "guzzlehttp/guzzle": "^7.8"
-    },
+    "type": "library",
+    "license": "GPL-3.0",
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "Nusagates\\Larapay\\": "src/"
@@ -14,5 +14,10 @@
             "name": "nusagates",
             "email": "nusagates@gmail.com"
         }
+    ],
+    "keywords": [
+        "laravel payment gateway integration",
+        "payment gateway",
+        "indonesia payment gateway"
     ]
 }
