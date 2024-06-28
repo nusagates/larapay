@@ -2,7 +2,7 @@
     "name": "nusagates/larapay",
     "description": "Laravel helper for iPaymu integration",
     "type": "library",
-    "license": "GPL-3.0",
+    "license": "MIT",
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
