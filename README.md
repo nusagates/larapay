@@ -4,7 +4,7 @@
 Laravel package for easy integration with payment gateways. Developed using the Laravel 11 environment.
 
 # Api Payment Gateway Used
-- [iPaymu](https://ipaymu.com/en/api-documentation/)
+- [iPaymu](https://my.ipaymu.com/register/ref/budairicontact)
 
 # Installation
 The best way to use this package is using [composer](https://getcomposer.org/)
