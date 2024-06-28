@@ -12,5 +12,26 @@ The best way to use this package is using [composer](https://getcomposer.org/)
 ```
 composer require nusagates/larapay
 ```
+# Usage
+## Requirement
+Create an account on [iPaymu](https://my.ipaymu.com/register/ref/budairicontact) and then get va Number and API Key from dashboard.
 
+## Initialization
+```php
+<?php
+use Nusagates\Larapay\Vendors\iPaymu\Ipaymu;
+
+$vaNumber = 'your-va-number';
+$apiKey = 'your-apikey';
+$isProduction = false;
+$iPaymu = new Ipaymu($vaNumber, $apiKey, $isProduction);
+```
+## Retrieve Balance Information
+```php
+$iPaymu->getBalance();
+```
+## Retrieve Transaction History
+```php
+$iPaymu->getHistory();
+```
 
