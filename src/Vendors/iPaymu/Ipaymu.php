@@ -1,6 +1,6 @@
 <?php
 
-namespace Nusagates\Larapay\iPaymu;
+namespace Nusagates\Larapay\Vendors\iPaymu;
 /**
  * @author Cak Bud <budairi@leap.id>
  */
@@ -8,9 +8,9 @@ namespace Nusagates\Larapay\iPaymu;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Http;
-use Nusagates\Larapay\iPaymu\Models\Buyer;
-use Nusagates\Larapay\iPaymu\Models\Payment;
-use Nusagates\Larapay\iPaymu\Models\Product;
+use Nusagates\Larapay\Vendors\iPaymu\Models\Buyer;
+use Nusagates\Larapay\Vendors\iPaymu\Models\Payment;
+use Nusagates\Larapay\Vendors\iPaymu\Models\Product;
 
 class Ipaymu
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Nusagates\Larapay\iPaymu;
+namespace Nusagates\Larapay\Vendors\iPaymu;
 /**
  * @author Cak Bud <budairi@leap.id>
  */
