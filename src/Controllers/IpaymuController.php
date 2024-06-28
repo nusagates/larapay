@@ -2,23 +2,32 @@
 
 namespace Nusagates\Larapay\Controllers;
 
+use Illuminate\Http\Request;
 use Inertia\Inertia;
-use Nusagates\Larapay\iPaymu\Ipaymu;
+use Nusagates\Larapay\Vendors\iPaymu\Ipaymu;
 
 /**
  * @author Cak Bud <budairi@leap.id>
  */
 class IpaymuController
 {
-    public $ipaymu;
+    public $ipaymu, $vaNumber, $apiKey;
 
     public function __construct()
     {
-        $this->ipaymu = new Ipaymu('1179002225005825', 'CA955CFE-0A8D-4A3E-A9CF-B1CE76AAAE7A');
+        $this->vaNumber = env('IPAYMU_VA');
+        $this->apiKey = env('IPAYMY_KEY');
+        $this->ipaymu = new Ipaymu($this->vaNumber, $this->apiKey);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('Larapay/Dashboard', ['balance' => $this->ipaymu->getBalance(), 'histories'=>$this->ipaymu->getHistory()]);
+        if ($request->filled('balance')) {
+            return $this->ipaymu->getBalance();
+        }
+        if ($request->filled('history')) {
+            return $this->ipaymu->getHistory();
+        }
+        return Inertia::render('Larapay/Dashboard');
     }
 }

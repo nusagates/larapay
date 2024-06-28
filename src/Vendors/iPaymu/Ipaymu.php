@@ -27,20 +27,26 @@ class Ipaymu
 
     /**
      * Retrieves balance information from specific account
+     * @param string $vaNumber
      * @return array|RedirectResponse|mixed|string
+     * @return mixed
      */
-    public function getBalance(): mixed
+    public function getBalance(string $vaNumber = null): mixed
     {
-        return $this->request($this->service->balance, ['account' => $this->vaNumber]);
+        $vaNumber = $vaNumber ?? $this->vaNumber;
+        return $this->request($this->service->balance, ['account' => $vaNumber]);
     }
 
     /**
-     * Retrieves transaction history sorted by descending creation date with a limit of 10 records per request
+     *  Retrieves transaction history sorted by descending creation date with a limit of 10 records per request
+     * @param string $vaNumber
      * @return array|mixed|string
+     * @return mixed
      */
-    public function getHistory()
+    public function getHistory(string $vaNumber=null): mixed
     {
-        return $this->request($this->service->history, ['orderBy' => 'created_at', 'order' => 'DESC', 'limit' => 10]);
+        $vaNumber = $vaNumber ?? $this->vaNumber;
+        return $this->request($this->service->history, ['account' => $vaNumber, 'orderBy' => 'created_at', 'order' => 'DESC', 'limit' => 10]);
     }
 
     /**
