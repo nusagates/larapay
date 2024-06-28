@@ -1,0 +1,2 @@
+# The Payment Gateway Integration For Laravel
+[![Latest Stable Version](https://poser.pugx.org/ipaymu/ipaymu-php-api/version)](https://packagist.org/packages/ipaymu/ipaymu-php-api) [![Total Downloads](https://poser.pugx.org/ipaymu/ipaymu-php-api/downloads)](https://packagist.org/packages/ipaymu/ipaymu-php-api) [![Latest Unstable Version](https://poser.pugx.org/ipaymu/ipaymu-php-api/v/unstable)](//packagist.org/packages/ipaymu/ipaymu-php-api) [![License](https://poser.pugx.org/ipaymu/ipaymu-php-api/license)](https://packagist.org/packages/ipaymu/ipaymu-php-api)
