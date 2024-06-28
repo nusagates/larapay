@@ -1,6 +1,6 @@
 <?php
 
-namespace Nusagates\Laraipaymu;
+namespace Nusagates\Larapay\iPaymu;
 /**
  * @author Cak Bud <budairi@leap.id>
  */
@@ -8,9 +8,9 @@ namespace Nusagates\Laraipaymu;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Http;
-use Nusagates\Laraipaymu\Models\Buyer;
-use Nusagates\Laraipaymu\Models\Payment;
-use Nusagates\Laraipaymu\Models\Product;
+use Nusagates\Larapay\iPaymu\Models\Buyer;
+use Nusagates\Larapay\iPaymu\Models\Payment;
+use Nusagates\Larapay\iPaymu\Models\Product;
 
 class Ipaymu
 {
@@ -130,9 +130,6 @@ class Ipaymu
             return $e->getMessage();
         }
 
-        if ($response->successful()) {
-            return $response->json();
-        }
-        return $response->json("Message");
+        return $response->json();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Nusagates\Laraipaymu;
+namespace Nusagates\Larapay\iPaymu;
 /**
  * @author Cak Bud <budairi@leap.id>
  */

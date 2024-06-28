@@ -1,12 +1,12 @@
 {
-    "name": "nusagates/laraipaymu",
+    "name": "nusagates/larapay",
     "description": "Laravel helper for iPaymu integration",
     "require": {
         "guzzlehttp/guzzle": "^7.8"
     },
     "autoload": {
         "psr-4": {
-            "Nusagates\\Laraipaymu\\": "src/"
+            "Nusagates\\Larapay\\": "src/"
         }
     },
     "authors": [
