@@ -19,7 +19,8 @@ class Service
         $codpayment,
         $codawb,
         $codtracking,
-        $codhistory;
+        $codhistory,
+        $register, $transfer;
 
     public function __construct($production)
     {
@@ -31,6 +32,8 @@ class Service
         /**
          * General API
          **/
+        $this->register = $base . '/register';
+        $this->transfer = $base . '/transferva';
         $this->balance = $base . '/balance';
         $this->transaction = $base . '/transaction';
         $this->history = $base . '/history';

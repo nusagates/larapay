@@ -43,7 +43,7 @@ class Ipaymu
      * @return array|mixed|string
      * @return mixed
      */
-    public function getHistory(string $vaNumber=null): mixed
+    public function getHistory(string $vaNumber = null): mixed
     {
         $vaNumber = $vaNumber ?? $this->vaNumber;
         return $this->request($this->service->history, ['account' => $vaNumber, 'orderBy' => 'created_at', 'order' => 'DESC', 'limit' => 10]);
@@ -96,7 +96,7 @@ class Ipaymu
      * @param Product|null $product
      * @return mixed
      */
-    public function redirectPayment(Buyer $buyer, int $amount, Payment $payment, Product $product = null): mixed
+    public function redirectPayment(Buyer $buyer, int $amount, Payment $payment, Product $product = null, $account=null): mixed
     {
         $paymentData = $buyer->toArray();
         $paymentData = array_merge($paymentData, $payment->toArray());
@@ -104,8 +104,52 @@ class Ipaymu
             $paymentData = array_merge($paymentData, $product->getItems());
         }
         $paymentData['amount'] = $amount;
+        if($account != null) {
+            $paymentData['account'] = $account;
+        }
         //return $paymentData;
         return $this->request($this->service->redirectpayment, $paymentData);
+    }
+
+    /**
+     * Register new user
+     * @param string $name
+     * @param string $email
+     * @param string $phone
+     * @param string $password
+     * @return mixed
+     */
+    public function register(string $name, string $email, string $phone, string $password): mixed
+    {
+        return $this->request($this->service->register, [
+            'name'     => $name,
+            'email'    => $email,
+            'phone'    => $phone,
+            'password' => $password
+        ]);
+    }
+
+    /**
+     * Transfer funds between accounts
+     * @param string $senderVa VA iPaymu pengirim
+     * @param int $receiverVa VA iPaymu penerima
+     * @param float $amount Jumlah dana yang akan di transfer
+     * @param null $transactionId Referensi ID transaksi iPaymu yang akan di split
+     * @param null $merchantId Referensi ID merchant
+     * @param null $notes Keterangan/catatan (opsional)
+     * @return mixed
+     */
+
+    public function transfer(string $senderVa, int $receiverVa, float $amount, $transactionId=null, $merchantId=null, $notes=null): mixed
+    {
+        return $this->request($this->service->transfer, [
+            'sender' => $senderVa,
+            'receiver' => $receiverVa,
+            'amount' => $amount,
+            'relatedId' => $transactionId,
+            'referenceId' => $merchantId,
+            'notes' => $notes
+        ]);
     }
 
     private function genSignature($data, $credentials): string
