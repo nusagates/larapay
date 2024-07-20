@@ -3,6 +3,9 @@
 
 Laravel package for easy integration with payment gateways. Developed using the Laravel 11 environment.
 
+> WARNING
+> This package is still in development and may contain bugs. Please use it at your own risk.
+
 # Api Payment Gateway Used
 - [iPaymu](https://my.ipaymu.com/register/ref/budairicontact)
 
@@ -10,21 +13,27 @@ Laravel package for easy integration with payment gateways. Developed using the 
 The best way to use this package is using [composer](https://getcomposer.org/)
 
 ```
-composer require nusagates/larapay
+composer require nusagates/larapay=dev-master
 ```
-# Usage
-## Requirement
-Create an account on [iPaymu](https://my.ipaymu.com/register/ref/budairicontact) and then get va Number and API Key from dashboard.
+Then copy config file from vendor to your project config with simple run command bellow:
+```bash
+php artisan vendor:publish --tag=larapay-config
+```
 
-## Initialization
+### Requirement
+Create an account on [iPaymu](https://my.ipaymu.com/register/ref/budairicontact) and then get va Number and API Key from dashboard.
+### Config
+From your project at `config/larapay.php`, set `YOUR-VIRTUAL-ACCOUNT` and `YOUR-API-KEY` corresponds to your iPaymu account at dashboard.
+# Usage
+With simple put class of iPaymu to your method of controller.
 ```php
-<?php
 use Nusagates\Larapay\Vendors\iPaymu\Ipaymu;
 
-$vaNumber = 'your-va-number';
-$apiKey = 'your-apikey';
-$isProduction = false;
-$iPaymu = new Ipaymu($vaNumber, $apiKey, $isProduction);
+public function index(Ipaymu $iPaymu)
+{
+    return $iPaymu->getBalance();
+}
+
 ```
 ## Retrieve Balance Information
 ```php
