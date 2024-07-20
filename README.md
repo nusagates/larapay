@@ -35,6 +35,12 @@ public function index(Ipaymu $iPaymu)
 }
 
 ```
+or fluently
+```php
+use Nusagates\Larapay\Facades\Ipaymu;
+
+Ipaymu::getBalance();
+```
 ## Retrieve Balance Information
 ```php
 $iPaymu->getBalance();

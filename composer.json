@@ -31,14 +31,10 @@
             "dont-discover": [],
             "providers": [
                 "Nusagates\\Larapay\\Providers\\LarapayProvider"
-            ]
+            ],
+            "aliases": {
+                "Ipaymu": "Nusagates\\Larapay\\Facade"
+            }
         }
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi",
-            "@php artisan vendor:publish --tag={larapay-config} --force"
-        ]
     }
 }
