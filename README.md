@@ -23,8 +23,14 @@ php artisan vendor:publish --tag=larapay-config
 ### Requirement
 Create an account on [iPaymu](https://my.ipaymu.com/register/ref/budairicontact) and then get va Number and API Key from dashboard.
 ### Config
-From your project at `config/larapay.php`, set `YOUR-VIRTUAL-ACCOUNT` and `YOUR-API-KEY` corresponds to your iPaymu account at dashboard.
-<p align="center"><img src="./docs/images/config.jpg" alt="config" width="100%" height="auto" /></p>
+From your project at `config/larapay.php`, set virtual account and api key corresponds to your iPaymu account at dashboard.
+```php
+return [
+    'va'        => env('LARAPAY_VA', '000000XXXXXXXXXX'),
+    'api_key'   => env('LARAPAY_API_KEY', 'SANDBOXXXX-XXXX-XXX'),
+    'mode'      => env('LARAPAY_MODE', 'sandbox'), // sandbox | production
+];
+```
 
 # Usage
 With simple put class of iPaymu to your method of controller.
