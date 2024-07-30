@@ -74,9 +74,10 @@ class Ipaymu
      * @param int $amount
      * @param Payment $payment
      * @param Product|null $product
+     * @param string|null $account
      * @return mixed
      */
-    public function directPayment(Buyer $buyer, int $amount, Payment $payment, Product $product = null): mixed
+    public function directPayment(Buyer $buyer, int $amount, Payment $payment, ?Product $product, ?string $account): mixed
     {
         $paymentData = $buyer->toArray();
         $paymentData = array_merge($paymentData, $payment->toArray());
@@ -84,6 +85,9 @@ class Ipaymu
             $paymentData = array_merge($paymentData, $product->getItems());
         }
         $paymentData['amount'] = $amount;
+        if($account != null) {
+            $paymentData['account'] = $account;
+        }
 
         return $this->request($this->service->directpayment, $paymentData);
     }
