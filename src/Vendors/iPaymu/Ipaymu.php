@@ -184,7 +184,7 @@ class Ipaymu
                 ->withRequestMiddleware(function (RequestInterface $request) {
                     if( config('larapay.log') ){
                         Log::build( config('larapay.log_build') )
-                            ->info("Request: ".$request->getBody()->getContents());
+                            ->info("Request: {data}".['data' => $request->getBody()->getContents()]);
                     } 
                     return $request;
                 })
