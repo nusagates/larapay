@@ -5,9 +5,11 @@ namespace Nusagates\Larapay\Vendors\iPaymu;
  * @author Cak Bud <budairi@leap.id>
  */
 
-use Illuminate\Http\Client\ConnectionException;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\RedirectResponse;
+use Psr\Http\Message\RequestInterface;
+use Illuminate\Http\Client\ConnectionException;
 use Nusagates\Larapay\Vendors\iPaymu\Models\Buyer;
 use Nusagates\Larapay\Vendors\iPaymu\Models\Payment;
 use Nusagates\Larapay\Vendors\iPaymu\Models\Product;
@@ -179,6 +181,13 @@ class Ipaymu
         );
         try {
             $response = Http::withHeaders($headers)
+                ->withRequestMiddleware(function (RequestInterface $request) {
+                    if( config('larapay.log') ){
+                        Log::build( config('larapay.log_build') )
+                            ->info("Request: ".$request->getBody()->getContents());
+                    } 
+                    return $request;
+                })
                 ->post($config, $params);
         } catch (ConnectionException $e) {
             return $e->getMessage();
