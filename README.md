@@ -29,8 +29,13 @@ return [
     'va'        => env('LARAPAY_VA', '000000XXXXXXXXXX'),
     'api_key'   => env('LARAPAY_API_KEY', 'SANDBOXXXX-XXXX-XXX'),
     'mode'      => env('LARAPAY_MODE', 'sandbox'), // sandbox | production
+    ...
 ];
 ```
+##### Logging
+Larapay allows saving request data to your log file. To enable this, simply set `LARAPAY_LOG=true`.
+Every time a request is made to an API, the request data payload will be saved.
+![Larapay](assets/log.jpg)
 
 # Usage
 With simple put class of iPaymu to your method of controller.
